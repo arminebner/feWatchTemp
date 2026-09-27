@@ -1,0 +1,11 @@
+services:
+  watchtempfe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8080}
+        VITE_SOCKET_URL: ${VITE_SOCKET_URL:-http://localhost:9092}
+    ports:
+      - "3000:80"
+    restart: unless-stopped
