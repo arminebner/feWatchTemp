@@ -40,6 +40,13 @@ function RouteComponent() {
     format(defaultEndDateAndTime, dateTimeInputFormat),
   )
   const [liveSensorValues, setLiveSensorValues] = React.useState<any[]>([])
+  const timestamp = liveSensorValues.timestamp
+    ? new Date(liveSensorValues.timestamp)
+    : null
+  const formattedTimestamp =
+    timestamp && !Number.isNaN(timestamp.getTime())
+      ? format(timestamp, 'PPpp')
+      : null
 
   React.useEffect(() => {
     const handleSensorValues = (liveData) => setLiveSensorValues(liveData)
@@ -145,7 +152,7 @@ function RouteComponent() {
             <article className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900 to-slate-900/60 p-5 shadow-xl shadow-black/10 sm:col-span-2 lg:col-span-1">
               <p className="text-sm font-medium text-slate-400">Last updated</p>
               <p className="mt-5 break-words text-lg font-semibold">
-                {liveSensorValues.timestamp ?? 'Waiting for first reading'}
+                {formattedTimestamp ?? 'Waiting for first reading'}
               </p>
               <p className="mt-2 text-sm text-slate-500">
                 Timestamp from Sensor 1
