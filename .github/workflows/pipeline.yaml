@@ -33,7 +33,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{vars.DOCKER_HUB_USER_NAME}}/watchtemp/frontend:latest
+          tags: ${{vars.DOCKER_HUB_USER_NAME}}/watchtemp:frontend-latest
           build-args: |
             VITE_API_URL=${{ vars.VITE_API_URL }}
             VITE_SOCKET_URL=${{ vars.VITE_SOCKET_URL }}
