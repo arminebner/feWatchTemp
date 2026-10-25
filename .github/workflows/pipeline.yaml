@@ -19,7 +19,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Test and Build Application
+      - name: Run unit tests
+        run: npm test
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run component and integration tests
+        run: npm run test:playwright
+
+      - name: Build Application
         run: npm run build
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
